@@ -1,0 +1,75 @@
+* { /* modificar toda a página */ 
+    margin: 0; /* sem margem do navegador */
+    padding: 0; /* margem dentro dentro do site */
+    box-sizing: border-box; /* manipular o tamanho da caixa: caixa com borda */
+    font-family: 'Open Sans', sans-serif; /*Fonte dos textos no site*/
+
+}
+
+body{ /* modificar o body do HTML */
+    background-image: url("https://source.unsplash.com/1600x900/?landscape"); /*imagem de fundo*/
+    background-size: cover; /*background cobre toda a página*/
+    height: 100vh; /* dividr a altura em 100 partes, afastar o corpo da margem */
+    width: 100vw; /* dividir a lagura em 100 partes, afastar da margem*/
+    display: flex; /* ativar funções de alimanhamento */
+    align-items: center; /* alinhar os items do BODY ao centro*/
+    justify-content: center; /*justificar o conteúdo do BODY ao centro */
+}
+
+.caixa-maior{ /* classe de um div (caixa) maior*/
+    background-color: #000000; /*cor de fundo */
+    opacity: 0.8; /* opacidade */
+    width: 95%; /* largura de 95%*/
+    max-width: 450px; /* largura máxima */
+    border-radius: 25px; /* arredondar borda da caixa */
+    padding: 20px; /* afastar items dentro dele da margem dele*/
+}
+
+.lupa{ /* classe de uma imagem - img*/
+    height: 20px; /* altura */
+    width: 20px; /* largura */
+}
+
+button{ /* botão com a lupa dentro */
+    border: none; /* sem borda */
+    padding: 10px; /* afastar a lupa 10px das margens do botão */
+    background-color: #7c7c7c2b; /* cor do botão*/
+    cursor: pointer; /* passar o mouse, aparece a mãozinha*/
+    border-radius: 50%; /* arredondar em formato de círculo*/
+    float: right; /* flutuar pra direita da caixa */
+}
+
+button:hover{ /* quando passar o mause no botão */
+    background-color: #7c7c7c; /*fundo do botão muda pra essa cor*/
+}
+
+input{ /* busca */
+    border: none; /*sem borda*/
+    outline: none; /* sem linha de borda*/
+    border-radius: 20px; /* arredondar borda em 20 pixels */
+    padding: 10px; /* texto dentro afastado 10px da margem */
+    background-color: #7c7c7c2b; /* cor de fundo */
+    color: #ffffff; /* cor do texto*/
+    width: calc(100% - 100px); /* largura de 100% - 100 pixels*/
+    font-size: 24px; /* tamanho da fonte do texto*/
+}
+
+.caixa-media{ /* classe de uma div - caixa media*/
+    margin-top: 30px; /* afastar 30 px do topo*/
+}
+
+.cidade{ /* classe de um título - h2*/
+    color: #ffffff; /* cor do texto */
+    font-size: 28px; /* tamanho */
+}
+
+.temperatura{ /* classe de um parágrafo - p*/
+    color: #ffffff; /* cor */
+    margin-top: 30px; /* afastar do topo*/
+    font-size: 30px; /* tamanho*/
+}
+
+.umidade { /* classe de um parágrafo - p*/
+    color: #ffffff; /* cor */
+    margin-top: 30px;  /* afastar do topo*/
+}
