@@ -7,7 +7,7 @@
 }
 
 body{ /* modificar o body do HTML */
-    background-image: url("https://source.unsplash.com/1600x900/?landscape"); /*imagem de fundo*/
+    background-image: url("images/cidade-iluminada-a-noite.jpg"); /*imagem de fundo*/
     background-size: cover; /*background cobre toda a página*/
     height: 100vh; /* dividr a altura em 100 partes, afastar o corpo da margem */
     width: 100vw; /* dividir a lagura em 100 partes, afastar da margem*/
