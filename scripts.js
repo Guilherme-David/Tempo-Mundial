@@ -1,40 +1,58 @@
-let chave = 'cebcd482eda57fa9a6714c1c2ba91885' // CHAVE API do servidor de tempo/clima
+let key = '9c987b4332a644a7b99122752252509'; // API key - keep this private!
 
 function mostrarNaTela(dados) {
-    console.log(dados)
+    console.log(dados); // For debugging
 
-    document.querySelector('.cidade').innerHTML = 'Tempo em ' + dados.name
-    document.querySelector('.temperatura').innerHTML = Math.round(dados.main.temp) + '°C'
-    document.querySelector('.icone').src = 'https://openweathermap.org/img/wn/' + dados.weather[0].icon + '.png'
-    document.querySelector('.umidade').innerHTML = 'Umidade: ' + dados.main.humidity + '%'
+    // Access WeatherAPI.com structure
+    document.querySelector('.cidade').innerHTML = 'Tempo em ' + dados.location.name;
+    document.querySelector('.temperatura').innerHTML = Math.round(dados.current.temp_c) + '°C'; // Use temp_c for Celsius
+    document.querySelector('.icone').src = dados.current.condition.icon; // Full URL already provided
+    document.querySelector('.umidade').innerHTML = 'Umidade: ' + dados.current.humidity + '%';
 }
 
-
-
-async function buscarCidade(cidade) {
-    // ASYNC --> Informar pra função que ela vai acessar um servidor
-
-    let dados = await fetch(
-        'https://api.openweathermap.org/data/2.5/weather?q=' +
-        cidade +
-        '&appid=cebcd482eda57fa9a6714c1c2ba91885&units=metric',
-    ).then((resposta) => resposta.json())
-
-    // AWAIT --> Manda o código esperar que o computador realize a ação
-    // FETCH --> Ferramenta do JavaScript para acessar servidores
-    // .THEN --> Então, (quando acessar o servidor)
-    // (resposta do servidor ==> se formata em JSON)
-    // .JSON --> formato que o JavaScript entende
-
-    mostrarNaTela(dados)
+async function buscarCidade(q) {
+    try {
+        // Fetch current weather from WeatherAPI.com
+        let resposta = await fetch(
+            'http://api.weatherapi.com/v1/current.json?key=' + key + '&q=' + q + '&aqi=no'
+        );
+        
+        if (!resposta.ok) {
+            throw new Error('Erro na API: ' + resposta.status); // e.g., 400 for invalid city
+        }
+        
+        let dados = await resposta.json();
+        
+        // Check if API returned an error (e.g., invalid key or city)
+        if (dados.error) {
+            throw new Error(dados.error.message);
+        }
+        
+        mostrarNaTela(dados);
+    } catch (erro) {
+        console.error('Erro ao buscar cidade:', erro);
+        // Optional: Show user-friendly message, e.g., alert('Cidade não encontrada ou erro na API!');
+        document.querySelector('.cidade').innerHTML = 'Erro: ' + erro.message;
+    }
 }
 
 function cliqueiNoBotao() {
-    let cidade = document.querySelector(".input-cidade").value
-
-    buscarCidade(cidade)
+    let q = document.querySelector(".input-cidade").value.trim(); // Trim whitespace
+    
+    if (!q) {
+        alert('Digite uma cidade!');
+        return;
+    }
+    
+    buscarCidade(q);
 }
 
+// Optional: Auto-search on Enter key in input
+document.querySelector(".input-cidade").addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        cliqueiNoBotao();
+    }
+});
 /*
 Clica no BOTÃO
  -> CHAMA A FUNÇÃO cliqueiNoBotao()
